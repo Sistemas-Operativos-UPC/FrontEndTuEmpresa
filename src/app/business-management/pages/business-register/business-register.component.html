@@ -1,0 +1,138 @@
+<main class="main">
+  <h3>Iniciemos un nuevo camino juntos</h3>
+  <p>Constituye tu empresa siguiendo los siguientes pasos:</p>
+  <section class="step">
+    <h4 class="title-step">Paso 0</h4>
+    <h6 class="short-description">Informacion personal</h6>
+    <div class="list">
+      <label for="name">
+        <span>Nombres:</span>
+        <input type="text" id="name" [placeholder]="person()?.primerNombre + '' + person()?.segundoNombre" readonly/>
+      </label>
+      <label for="lastName">
+        <span>Apellidos:</span>
+        <input type="text" id="lastName" [placeholder]="person()?.apellidoPaterno + '' + person()?.apellidoMaterno" readonly/>
+      </label>
+      <label for="documentNumber">
+        <span>Numero de documento:</span>
+        <input type="text" id="documentNumber" [placeholder]="person()?.numeroDocumento" readonly/>
+      </label>
+    </div>
+  </section>
+  <section class="step">
+    <h4 class="title-step">Paso 1</h4>
+    <h6 class="short-description">Reserva de nombre</h6>
+    <p>Por favor digite las opciones de nombre en orden de prioridad. Debera ingresar como minimo 3 opciones y maximo 5 opciones.</p>
+    <form [formGroup]="namesForm" class="list">
+      <div class="list-name">
+        <span>1. (obligatorio)</span>
+        <label for="name1">
+          <input type="text" id="name1" formControlName="name1" placeholder="nombre 1"/>
+        </label>
+        <label for="abbreviation1">
+          <input type="text" id="abbreviation1" formControlName="abbreviation1" placeholder="abbreviatura 1"/>
+        </label>
+      </div>
+      <div class="list-name">
+        <span>2. (obligatorio)</span>
+        <label for="name2">
+          <input type="text" id="name2" formControlName="name2" placeholder="nombre 2"/>
+        </label>
+        <label for="abbreviation2">
+          <input type="text" id="abbreviation2" formControlName="abbreviation2" placeholder="abbreviatura 2"/>
+        </label>
+      </div>
+      <div class="list-name">
+        <span>3. (obligatorio)</span>
+        <label for="name3">
+          <input type="text" id="name3" formControlName="name3" placeholder="nombre 3"/>
+        </label>
+        <label for="abbreviation3">
+          <input type="text" id="abbreviation3" formControlName="abbreviation3" placeholder="abbreviatura 3"/>
+        </label>
+      </div>
+      <div class="list-name">
+        <span>4. (opcional)</span>
+        <label for="name4">
+          <input type="text" id="name4" formControlName="name4" placeholder="nombre 4"/>
+        </label>
+        <label for="abbreviation4">
+          <input type="text" id="abbreviation4" formControlName="abbreviation4" placeholder="abbreviatura 4"/>
+        </label>
+      </div>
+      <div class="list-name">
+        <span>5. (opcional)</span>
+        <label for="name5">
+          <input type="text" id="name5" formControlName="name5" placeholder="nombre 5"/>
+        </label>
+        <label for="abbreviation5">
+          <input type="text" id="abbreviation5" formControlName="abbreviation5" placeholder="abbreviatura 5"/>
+        </label>
+      </div>
+    </form>
+    <h6 class="short-description">Seleccione el tipo de modalidad empresarial</h6>
+    <div class="list">
+      @for (businessType of businessModelTypes(); track businessType.id){
+        <label for="businessType">
+          <input type="radio" name="businessType" id="businessType" value="{{ businessType.id }}" [formControl]="selectedBusinessModelType"/>
+          {{businessType.name}}
+        </label>
+      }
+    </div>
+    <h6 class="short-description">Indique el domicilio que se registrar a nombre de la empresa</h6>
+    <div class="list">
+      <label class="list-name" for="department">
+        <span>Departamento:</span>
+        <select id="department" [formControl]="selectedLocationDepartment">
+          @for (department of departments(); track department.id){
+            <option value="{{ department.id }}">{{ department.name }}</option>
+          }
+        </select>
+      </label>
+      <label class="list-name" for="district">
+        <span>Distrito:</span>
+        <select id="district" [formControl]="selectedLocationDistrict">
+          @for (district of districts(); track district.id){
+            <option value="{{ district.id }}">{{ district.name }}</option>
+          }
+        </select>
+      </label>
+      <label class="list-name" for="province">
+        <span>Provincia:</span>
+        <select id="province" [formControl]="selectedLocationProvince">
+          @for (province of provinces(); track province.id){
+            <option value="{{ province.id }}">{{ province.name }}</option>
+          }
+        </select>
+      </label>
+    </div>
+  </section>
+  <section class="step">
+    <h4 class="title-step">Paso 2</h4>
+    <h6 class="short-description">Acto constitutivo</h6>
+    <p>El Acto Constitutivo es un documento en el cual los miembros de una sociedad manifiestan su voluntad de constituir una empresa y donde señalan todos los acuerdos respectivos.</p>
+    <div class="minuta">
+      <span>Descargar Acto Constitutivo:</span>
+      <a href="docs/ficha-de-solicitud-de-constitucion-de-empresas.docx" download>
+        <button type="button">Descargar Acto Constitutivo</button>
+      </a>
+    </div>
+    <h6 class="short-description">Selecciona la notaria de su preferencia</h6>
+    <p>En la lista adjunta se muestran notarias aliadas al TuEmpresa las cuales brindan tarifas sociales</p>
+    <div class="list">
+      @for (notary of notaries(); track notary.id){
+        <label for="notary">
+          <input type="radio" name="notary" id="notary" value="{{ notary.id }}" [formControl]="selectedNotary"/>
+          <div class="characteristics-list">
+            <span>{{notary.name}}</span>
+            <span>{{notary.direccion}}</span>
+            <span>S/{{notary.tarifaSocial}}</span>
+          </div>
+        </label>
+      }
+    </div>
+  </section>
+  <section class="send">
+    <button class="register-button" type="button" (click)="onRegister()">Registrar empresa</button>
+  </section>
+</main>

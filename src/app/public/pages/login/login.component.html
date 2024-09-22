@@ -1,0 +1,24 @@
+<main class="main">
+  <form [formGroup]="loginForm" (submit)="onSubmit($event)" class="form">
+    <h3>Ingreso</h3>
+    <mat-form-field>
+      <mat-label>Correo electronico</mat-label>
+      <input formControlName="documentNumber" matInput placeholder="Ex. user@gmail.com" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contrasena</mat-label>
+      <input formControlName="password" matInput [type]="hide() ? 'password' : 'text'" required/>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClick()"
+        type="button"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button class="button" mat-button type="submit">Enviar</button>
+  </form>
+</main>

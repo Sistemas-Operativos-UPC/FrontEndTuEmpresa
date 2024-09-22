@@ -1,0 +1,42 @@
+.main {
+  padding: 4rem 4rem 8rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  background: rgb(2,0,36);
+  background: linear-gradient(51deg, rgba(2,0,36,1) 0%, rgb(52, 85, 176) 33%, rgba(0,212,255,1) 100%);
+  span {
+    color: white;
+  }
+}
+.main__img {
+  width: 8rem;
+}
+.main__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  h1 {
+    font-size: 4rem;
+    font-weight: bolder;
+  }
+  p {
+    font-size: 2rem;
+    font-weight: normal;
+  }
+}
+.main__buttons {
+  display: flex;
+  gap: 2rem;
+  button {
+    background: red;
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
