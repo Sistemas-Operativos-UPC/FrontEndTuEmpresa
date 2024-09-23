@@ -57,67 +57,6 @@ export class BusinessRegisterComponent {
   notaries = this.dataService.notaries;
 
   constructor(private router: Router){
-    this.getDepartments();
-    this.getDistricts();
-    this.getProvinces();
-    this.getStates();
-    this.getDocumentTypes();
-    this.getBusinessModelsTypes();
-    this.getPersonTypes();
-    this.getNotaries();
-  }
-
-  getDepartments(){
-    this.apiService.getDepartamentos()
-      .subscribe(response =>{
-        this.dataService.departments.set(response as Departamento[]);
-      })
-  }
-  getDistricts(){
-    this.apiService.getDistritos()
-      .subscribe(response =>{
-        this.dataService.districts.set(response as Distrito[]);
-      })
-  }
-  getProvinces(){
-    this.apiService.getProvincias()
-      .subscribe(response =>{
-        this.dataService.provinces.set(response as Provincia[]);
-      })
-  }
-  getStates(){
-    this.apiService.getEstados()
-      .subscribe(response =>{
-        this.dataService.states.set(response as Estado[]);
-      })
-  }
-  getDocumentTypes(){
-    this.apiService.getTipoDocumentos()
-      .subscribe(response =>{
-        this.dataService.documentTypes.set(response as TipoDocumento[]);
-      })
-  }
-  getBusinessModelsTypes(){
-    this.apiService.getTipoModalidadEmpresariales()
-      .subscribe(response =>{
-        this.dataService.businessModelsTypes.set(response as TipoModalidadEmpresarial[]);
-      })
-  }
-  getPersonTypes(){
-    this.apiService.getTipoPersonas()
-      .subscribe(response =>{
-        this.dataService.personTypes.set(response as TipoPersona[]);
-      })
-  }
-  getNotaries(){
-    this.apiService.getNotarias()
-      .subscribe(response =>{
-        this.dataService.notaries.set(response as Notaria[]);
-      })
-  }
-
-  ngOnInit(){
-    this.registerBusinessNames(1);
   }
 
   registerBusinessNames(idBusiness: Number){

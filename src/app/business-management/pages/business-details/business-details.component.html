@@ -1,1 +1,25 @@
-<p>business-details works!</p>
+<main class="container">
+  <h3>Solicitudes</h3>
+  <section class="request-container">
+    @for (request of requestsCompleted(); track request.request.id){
+      <mat-card class="request-card">
+        <mat-card-header>
+          <mat-card-title>
+            Solicitud #{{ request.request.id }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            Enviado el: {{ request.request.fechaEnvio | date: 'dd/MM/yyyy' }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="request-info">
+            <p><strong>Fecha de Finalización:</strong> {{ request.request.fechaFinalizacion | date: 'dd/MM/yyyy' }}</p>
+            <p><strong>Estado:</strong> {{ request.state?.name }}</p>
+            <p><strong>ID de Negocio:</strong> {{ request.business?.id }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </section>
+</main>
